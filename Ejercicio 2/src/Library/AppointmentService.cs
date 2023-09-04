@@ -1,28 +1,27 @@
-﻿using System;
+using System;
 using System.Text;
 
-namespace Library
-{
-    public class AppointmentService
-    {
-        public static string CreateAppointment(string name, string id, string phoneNumber, DateTime date, string appoinmentPlace, string doctorName)
-        {
-            StringBuilder stringBuilder = new StringBuilder("Scheduling appointment...\n");
-            Boolean isValid = true;
 
-            if (string.IsNullOrEmpty(name))
+public class AppointmentService
+{
+    public static string SetAppointment(Patient patient, DateTime date, string appointmentPlace, Doctor doctor)
+    {
+        StringBuilder stringBuilder = new StringBuilder("Scheduling appointment...\n");
+        Boolean isValid = true;
+
+            if (string.IsNullOrEmpty(patient.Name))
             {
                 stringBuilder.Append("Unable to schedule appointment, 'name' is required\n");
                 isValid = false;
             }
 
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(patient.Id))
             {
                 stringBuilder.Append("Unable to schedule appointment, 'id' is required\n");
                 isValid = false;
             }
 
-            if (string.IsNullOrEmpty(phoneNumber))
+            if (string.IsNullOrEmpty(patient.PhoneNumber))
             {
                 stringBuilder.Append("Unable to schedule appointment, 'phone number' is required\n");
                 isValid = false;
@@ -35,7 +34,7 @@ namespace Library
             }
 
 
-            if (string.IsNullOrEmpty(doctorName))
+            if (string.IsNullOrEmpty(doctor.Name))
             {
                 stringBuilder.Append("Unable to schedule appointment, 'doctor name' is required\n");
                 isValid = false;
@@ -47,7 +46,5 @@ namespace Library
             }
 
             return stringBuilder.ToString();
-        }
-
     }
 }
